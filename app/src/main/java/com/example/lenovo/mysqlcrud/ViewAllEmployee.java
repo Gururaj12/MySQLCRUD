@@ -40,13 +40,13 @@ public class ViewAllEmployee extends AppCompatActivity implements ListView.OnIte
                 JSONObject jo = result.getJSONObject(i);
                 String id = jo.getString(Config.TAG_ID);
                 String name = jo.getString(Config.TAG_NAME);
-                String desg = jo.getString(Config.TAG_DESG);
+                String designation = jo.getString(Config.TAG_DESG);
                 String sal = jo.getString(Config.TAG_SAL);
 
                 HashMap<String,String> employees = new HashMap<>();
                 employees.put(Config.TAG_ID,id);
                 employees.put(Config.TAG_NAME,name);
-                employees.put(Config.TAG_DESG,desg);
+                employees.put(Config.TAG_DESG,designation);
                 employees.put(Config.TAG_SAL,sal);
                 list.add(employees);
             }

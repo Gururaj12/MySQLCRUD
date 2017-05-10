@@ -91,11 +91,11 @@ public class ViewEmployee extends AppCompatActivity implements View.OnClickListe
             JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
             JSONObject c = result.getJSONObject(0);
             String name = c.getString(Config.TAG_NAME);
-            String desg = c.getString(Config.TAG_DESG);
+            String designation = c.getString(Config.TAG_DESG);
             String sal = c.getString(Config.TAG_SAL);
 
             editTextName.setText(name);
-            editTextDesg.setText(desg);
+            editTextDesg.setText(designation);
             editTextSalary.setText(sal);
 
         } catch (JSONException e) {
@@ -106,7 +106,7 @@ public class ViewEmployee extends AppCompatActivity implements View.OnClickListe
 
     private void updateEmployee(){
         final String name = editTextName.getText().toString().trim();
-        final String desg = editTextDesg.getText().toString().trim();
+        final String designation = editTextDesg.getText().toString().trim();
         final String salary = editTextSalary.getText().toString().trim();
 
         class UpdateEmployee extends AsyncTask<Void,Void,String> {
@@ -129,7 +129,7 @@ public class ViewEmployee extends AppCompatActivity implements View.OnClickListe
                 HashMap<String,String> hashMap = new HashMap<>();
                 hashMap.put(Config.KEY_EMP_ID,id);
                 hashMap.put(Config.KEY_EMP_NAME,name);
-                hashMap.put(Config.KEY_EMP_DESG,desg);
+                hashMap.put(Config.KEY_EMP_DESG,designation);
                 hashMap.put(Config.KEY_EMP_SAL,salary);
 
                 RequestHandler rh = new RequestHandler();
@@ -202,6 +202,7 @@ public class ViewEmployee extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if(v == buttonUpdate){
             updateEmployee();
+            startActivity(new Intent(ViewEmployee.this,ViewAllEmployee.class));
         }
 
         if(v == buttonDelete){

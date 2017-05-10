@@ -13,24 +13,17 @@ import android.widget.Toast;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    //declearing all views from layout
-    private EditText editTextName;
-    private EditText editTextDesg;
-    private EditText editTextSal;
-    private Button buttonAdd;
-    private Button buttonView;
-
+    private EditText editTextName,editTextDesg,editTextSal;
+    private Button buttonAdd,buttonView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // initialisation of all views
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextDesg = (EditText) findViewById(R.id.editTextDesg);
         editTextSal = (EditText) findViewById(R.id.editTextSalary);
         buttonAdd = (Button) findViewById(R.id.buttonAdd);
         buttonView = (Button) findViewById(R.id.buttonView);
-        //Setting listeners to button
         buttonAdd.setOnClickListener(this);
         buttonView.setOnClickListener(this);
     }
