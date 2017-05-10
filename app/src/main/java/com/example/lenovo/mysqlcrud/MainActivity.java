@@ -13,6 +13,7 @@ import android.widget.Toast;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    //declearing all views from layout
     private EditText editTextName;
     private EditText editTextDesg;
     private EditText editTextSal;
@@ -23,12 +24,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // initialisation of all views
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextDesg = (EditText) findViewById(R.id.editTextDesg);
         editTextSal = (EditText) findViewById(R.id.editTextSalary);
         buttonAdd = (Button) findViewById(R.id.buttonAdd);
         buttonView = (Button) findViewById(R.id.buttonView);
-
         //Setting listeners to button
         buttonAdd.setOnClickListener(this);
         buttonView.setOnClickListener(this);
@@ -42,11 +43,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         class AddEmployee extends AsyncTask<Void,Void,String> {
 
             ProgressDialog loading;
-
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(MainActivity.this,"Adding...","Wait...",false,false);
+                loading = ProgressDialog.show(MainActivity.this,"Adding Employee...","Please Wait...",false,false);
             }
 
             @Override
@@ -62,10 +62,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 params.put(Config.KEY_EMP_NAME,name);
                 params.put(Config.KEY_EMP_DESG,desg);
                 params.put(Config.KEY_EMP_SAL,sal);
-
                 RequestHandler rh = new RequestHandler();
-                String res = rh.sendPostRequest(Config.URL_ADD, params);
-                return res;
+                return rh.sendPostRequest(Config.URL_ADD, params);
+
             }
         }
 

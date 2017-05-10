@@ -19,11 +19,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ViewAllEmployee extends AppCompatActivity implements ListView.OnItemClickListener{
-
     private ListView listView;
-
     private String JSON_STRING;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +29,6 @@ public class ViewAllEmployee extends AppCompatActivity implements ListView.OnIte
         listView.setOnItemClickListener(this);
         getJSON();
     }
-
     private void showEmployee(){
         JSONObject jsonObject = null;
         ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String, String>>();
@@ -44,10 +40,14 @@ public class ViewAllEmployee extends AppCompatActivity implements ListView.OnIte
                 JSONObject jo = result.getJSONObject(i);
                 String id = jo.getString(Config.TAG_ID);
                 String name = jo.getString(Config.TAG_NAME);
+                String desg = jo.getString(Config.TAG_DESG);
+                String sal = jo.getString(Config.TAG_SAL);
 
                 HashMap<String,String> employees = new HashMap<>();
                 employees.put(Config.TAG_ID,id);
                 employees.put(Config.TAG_NAME,name);
+                employees.put(Config.TAG_DESG,desg);
+                employees.put(Config.TAG_SAL,sal);
                 list.add(employees);
             }
 
@@ -57,8 +57,8 @@ public class ViewAllEmployee extends AppCompatActivity implements ListView.OnIte
 
         ListAdapter adapter = new SimpleAdapter(
                 ViewAllEmployee.this, list, R.layout.list_item,
-                new String[]{Config.TAG_ID,Config.TAG_NAME},
-                new int[]{R.id.id, R.id.name});
+                new String[]{Config.TAG_ID,Config.TAG_NAME,Config.TAG_DESG,Config.TAG_SAL},
+                new int[]{R.id.id, R.id.name,R.id.desg,R.id.sal});
 
         listView.setAdapter(adapter);
     }
@@ -93,12 +93,17 @@ public class ViewAllEmployee extends AppCompatActivity implements ListView.OnIte
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(this, ViewEmployee.class);
-        HashMap<String,String> map =(HashMap)parent.getItemAtPosition(position);
-        String empId = map.get(Config.TAG_ID).toString();
-        intent.putExtra(Config.EMP_ID,empId);
-        startActivity(intent);
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+        try {
+            Intent intent = new Intent(this, ViewEmployee.class);
+            HashMap<String, String> map = (HashMap) parent.getItemAtPosition(position);
+            String empId = map.get(Config.TAG_ID).toString();
+            intent.putExtra(Config.EMP_ID, empId);
+            startActivity(intent);
+        }catch (Exception e){
+            e.getStackTrace();
+            e.getMessage();
+        }
 
     }
 }
