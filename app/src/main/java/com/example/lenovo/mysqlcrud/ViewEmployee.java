@@ -151,7 +151,7 @@ public class ViewEmployee extends AppCompatActivity implements View.OnClickListe
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(ViewEmployee.this, "Updating...", "Wait...", false, false);
+                loading = ProgressDialog.show(ViewEmployee.this, "Deleting...", "Wait...", false, false);
             }
 
             @Override
@@ -182,7 +182,7 @@ public class ViewEmployee extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         deleteEmployee();
-                        startActivity(new Intent(ViewEmployee.this,ViewAllEmployee.class));
+                       // startActivity(new Intent(ViewEmployee.this,ViewAllEmployee.class));
                     }
                 });
 
